@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naomi Cafe | Artisanal Coffee</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+                              url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .cafe-title {
+            font-family: var(--font-serif);
+            font-size: clamp(3.5rem, 12vw, 6rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            width: 100%;
+            max-width: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .order-btn {
+            background: rgba(231, 76, 60, 0.2);
+            border-color: rgba(231, 76, 60, 0.4);
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            width: 100%;
+            padding: 0 2rem;
+            align-items: center;
+            animation: fadeInUp 1.2s ease-out 0.3s both;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            padding-bottom: 4rem;
+        }
+
+        .menu-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .special-card {
+            background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            color: #000;
+            border: none;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .overlay-view {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0f0f0f;
+            z-index: 50;
+            display: none;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .overlay-active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Landing Page -->
+    <main class="hero-section" id="home">
+        <h1 class="cafe-title">Naomi Cafe</h1>
+        <nav class="btn-container">
+            <button onclick="showSection('menu')" class="glass-btn">Menu</button>
+            <button onclick="showSection('contact')" class="glass-btn">Contact</button>
+            <!-- Location is now a direct Google Maps link -->
+            <a href="https://maps.google.com/?q=Naomi+Cafe+New+York" target="_blank" class="glass-btn">Location</a>
+            <a href="https://www.zomato.com" target="_blank" class="glass-btn order-btn">Order</a>
+        </nav>
+    </main>
+
+    <!-- Menu Overlay -->
+    <div id="menu" class="overlay-view">
+        <div class="max-w-6xl mx-auto">
+            <button onclick="closeSection()" class="mb-8 text-sm opacity-60 hover:opacity-100 flex items-center gap-2">
+                ← BACK TO HOME
+            </button>
+            <h2 class="text-5xl font-serif mb-12">Our Selection</h2>
+            
+            <div class="menu-grid">
+                <!-- Special Cards (3) -->
+                <div class="menu-card special-card">
+                    <img src="https://i.pinimg.com/736x/52/90/c5/5290c537870d0a92256369c98511372b.jpg" alt="Signature dish" class="card-img">
+                    <div class="card-content">
+                        <div>
+                            <span class="text-[10px] uppercase font-bold tracking-widest block mb-1">Naomi Special</span>
+                            <h3 class="text-xl font-serif font-bold">Gold Leaf Latte</h3>
+                        </div>
+                        <span class="text-lg font-bold">₹850</span>
+                    </div>
+                </div>
+
+                <div class="menu-card special-card">
+                    <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?q=80&w=500&auto=format&fit=crop" alt="Special dish" class="card-img">
+                    <div class="card-content">
+                        <div>
+                            <span class="text-[10px] uppercase font-bold tracking-widest block mb-1">Naomi Special</span>
+                            <h3 class="text-xl font-serif font-bold">Truffle Benedict</h3>
+                        </div>
+                        <span class="text-lg font-bold">₹1,200</span>
+                    </div>
+                </div>
+
+                <div class="menu-card special-card">
+                    <img src="https://www.tashasartisanfoods.com/blog/wp-content/uploads/2020/08/Saffron-Cardamom-Cheesecake-1.jpg" alt="Special dish" class="card-img">
+                    <div class="card-content">
+                        <div>
+                            <span class="text-[10px] uppercase font-bold tracking-widest block mb-1">Naomi Special</span>
+                            <h3 class="text-xl font-serif font-bold">Saffron Cheesecake</h3>
+                        </div>
+                        <span class="text-lg font-bold">₹950</span>
+                    </div>
+                </div>
+
+                <!-- Regular Cards (7) -->
+                <div class="menu-card">
+                    <img src="https://www.kitchensanctuary.com/wp-content/uploads/2019/09/Spaghetti-Bolognese-square-FS-0204.jpg" alt="Coffee" class="card-img">
+                    <div class="card-content">
+                        <h3 class="text-lg font-medium">Spaghetti Bolognese</h3>
+                        <span class="text-lg opacity-80">₹320</span>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="https://cdn.uengage.io/uploads/28289/image-3CF78X-1774088782.png" alt="Drink" class="card-img">
+                    <div class="card-content">
+                        <h3 class="text-lg font-medium">Iced Americano</h3>
+                        <span class="text-lg opacity-80">₹280</span>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=500&auto=format&fit=crop" alt="Matcha" class="card-img">
+                    <div class="card-content">
+                        <h3 class="text-lg font-medium">Kyoto Matcha</h3>
+                        <span class="text-lg opacity-80">₹450</span>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="https://loveandcheesecake.com/cdn/shop/files/buttercroissant2.jpg?v=1711088930&width=480" alt="Pastry" class="card-img">
+                    <div class="card-content">
+                        <h3 class="text-lg font-medium">Butter Croissant</h3>
+                        <span class="text-lg opacity-80">₹250</span>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?q=80&w=500&auto=format&fit=crop" alt="Breakfast" class="card-img">
+                    <div class="card-content">
+                        <h3 class="text-lg font-medium">Avocado Toast</h3>
+                        <span class="text-lg opacity-80">₹580</span>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=500&auto=format&fit=crop" alt="Vibe" class="card-img">
+                    <div class="card-content">
+                        <h3 class="text-lg font-medium">Pour Over</h3>
+                        <span class="text-lg opacity-80">₹380</span>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=500&auto=format&fit=crop" alt="Cappuccino" class="card-img">
+                    <div class="card-content">
+                        <h3 class="text-lg font-medium">Cappuccino</h3>
+                        <span class="text-lg opacity-80">₹340</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Overlay -->
+    <div id="contact" class="overlay-view">
+        <button onclick="closeSection()" class="mb-8 text-sm opacity-60 hover:opacity-100 flex items-center gap-2">
+            ← BACK TO HOME
+        </button>
+        <h2 class="text-4xl font-serif mb-8">Contact Us</h2>
+        <p class="opacity-80 mb-4">Questions or bookings?</p>
+        <a href="mailto:hello@naomicafe.com" class="text-2xl border-b border-white/30 hover:border-white transition-colors">hello@naomicafe.com</a>
+        <div class="mt-12 space-y-2 opacity-60">
+            <p>Mon — Fri: 7am - 6pm</p>
+            <p>Sat — Sun: 8am - 8pm</p>
+        </div>
+    </div>
+
+    <script>
+        function showSection(id) {
+            document.getElementById(id).classList.add('overlay-active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSection() {
+            const overlays = document.querySelectorAll('.overlay-view');
+            overlays.forEach(o => o.classList.remove('overlay-active'));
+            document.body.style.overflow = 'auto';
+        }
+
+        const hero = document.querySelector('.hero-section');
+        const img = new Image();
+        img.src = "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop";
+        img.onerror = () => {
+            hero.style.backgroundColor = "#1a1a1a";
+            hero.style.backgroundImage = "none";
+        };
+    </script>
+</body>
+</html>
