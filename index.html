@@ -86,6 +86,7 @@
             animation: fadeInUp 1.2s ease-out 0.3s both;
         }
 
+        /* Menu Card Styles */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -124,6 +125,33 @@
             align-items: center;
         }
 
+        /* Gallery/Timeline Styles */
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 3rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0;
+            width: 9px;
+            height: 9px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        @media (min-width: 768px) {
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -160,7 +188,7 @@
         <nav class="btn-container">
             <button onclick="showSection('menu')" class="glass-btn">Menu</button>
             <button onclick="showSection('contact')" class="glass-btn">Contact</button>
-            <!-- Location is now a direct Google Maps link -->
+            <button onclick="showSection('gallery')" class="glass-btn">Gallery</button>
             <a href="https://maps.google.com/?q=Naomi+Cafe+New+York" target="_blank" class="glass-btn">Location</a>
             <a href="https://www.zomato.com" target="_blank" class="glass-btn order-btn">Order</a>
         </nav>
@@ -177,7 +205,7 @@
             <div class="menu-grid">
                 <!-- Special Cards (3) -->
                 <div class="menu-card special-card">
-                    <img src="https://i.pinimg.com/736x/52/90/c5/5290c537870d0a92256369c98511372b.jpg" alt="Signature dish" class="card-img">
+                    <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=500&auto=format&fit=crop" alt="Signature dish" class="card-img">
                     <div class="card-content">
                         <div>
                             <span class="text-[10px] uppercase font-bold tracking-widest block mb-1">Naomi Special</span>
@@ -186,7 +214,6 @@
                         <span class="text-lg font-bold">₹850</span>
                     </div>
                 </div>
-
                 <div class="menu-card special-card">
                     <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?q=80&w=500&auto=format&fit=crop" alt="Special dish" class="card-img">
                     <div class="card-content">
@@ -197,9 +224,8 @@
                         <span class="text-lg font-bold">₹1,200</span>
                     </div>
                 </div>
-
                 <div class="menu-card special-card">
-                    <img src="https://www.tashasartisanfoods.com/blog/wp-content/uploads/2020/08/Saffron-Cardamom-Cheesecake-1.jpg" alt="Special dish" class="card-img">
+                    <img src="https://images.unsplash.com/photo-1544787210-282aa0bc119a?q=80&w=500&auto=format&fit=crop" alt="Special dish" class="card-img">
                     <div class="card-content">
                         <div>
                             <span class="text-[10px] uppercase font-bold tracking-widest block mb-1">Naomi Special</span>
@@ -208,64 +234,58 @@
                         <span class="text-lg font-bold">₹950</span>
                     </div>
                 </div>
-
-                <!-- Regular Cards (7) -->
-                <div class="menu-card">
-                    <img src="https://www.kitchensanctuary.com/wp-content/uploads/2019/09/Spaghetti-Bolognese-square-FS-0204.jpg" alt="Coffee" class="card-img">
-                    <div class="card-content">
-                        <h3 class="text-lg font-medium">Spaghetti Bolognese</h3>
-                        <span class="text-lg opacity-80">₹320</span>
-                    </div>
-                </div>
-
-                <div class="menu-card">
-                    <img src="https://cdn.uengage.io/uploads/28289/image-3CF78X-1774088782.png" alt="Drink" class="card-img">
-                    <div class="card-content">
-                        <h3 class="text-lg font-medium">Iced Americano</h3>
-                        <span class="text-lg opacity-80">₹280</span>
-                    </div>
-                </div>
-
-                <div class="menu-card">
-                    <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=500&auto=format&fit=crop" alt="Matcha" class="card-img">
-                    <div class="card-content">
-                        <h3 class="text-lg font-medium">Kyoto Matcha</h3>
-                        <span class="text-lg opacity-80">₹450</span>
-                    </div>
-                </div>
-
-                <div class="menu-card">
-                    <img src="https://loveandcheesecake.com/cdn/shop/files/buttercroissant2.jpg?v=1711088930&width=480" alt="Pastry" class="card-img">
-                    <div class="card-content">
-                        <h3 class="text-lg font-medium">Butter Croissant</h3>
-                        <span class="text-lg opacity-80">₹250</span>
-                    </div>
-                </div>
-
-                <div class="menu-card">
-                    <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?q=80&w=500&auto=format&fit=crop" alt="Breakfast" class="card-img">
-                    <div class="card-content">
-                        <h3 class="text-lg font-medium">Avocado Toast</h3>
-                        <span class="text-lg opacity-80">₹580</span>
-                    </div>
-                </div>
-
-                <div class="menu-card">
-                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=500&auto=format&fit=crop" alt="Vibe" class="card-img">
-                    <div class="card-content">
-                        <h3 class="text-lg font-medium">Pour Over</h3>
-                        <span class="text-lg opacity-80">₹380</span>
-                    </div>
-                </div>
-
-                <div class="menu-card">
-                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=500&auto=format&fit=crop" alt="Cappuccino" class="card-img">
-                    <div class="card-content">
-                        <h3 class="text-lg font-medium">Cappuccino</h3>
-                        <span class="text-lg opacity-80">₹340</span>
-                    </div>
-                </div>
+                <!-- 7 Regular Cards -->
+                <div class="menu-card"><img src="https://images.unsplash.com/photo-1541167760496-16293cb58732?q=80&w=500&auto=format&fit=crop" class="card-img"><div class="card-content"><h3 class="text-lg font-medium">Classic Flat White</h3><span class="text-lg opacity-80">₹320</span></div></div>
+                <div class="menu-card"><img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?q=80&w=500&auto=format&fit=crop" class="card-img"><div class="card-content"><h3 class="text-lg font-medium">Iced Americano</h3><span class="text-lg opacity-80">₹280</span></div></div>
+                <div class="menu-card"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=500&auto=format&fit=crop" class="card-img"><div class="card-content"><h3 class="text-lg font-medium">Kyoto Matcha</h3><span class="text-lg opacity-80">₹450</span></div></div>
+                <div class="menu-card"><img src="https://images.unsplash.com/photo-1513530534585-c7b1394c6d51?q=80&w=500&auto=format&fit=crop" class="card-img"><div class="card-content"><h3 class="text-lg font-medium">Butter Croissant</h3><span class="text-lg opacity-80">₹250</span></div></div>
+                <div class="menu-card"><img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?q=80&w=500&auto=format&fit=crop" class="card-img"><div class="card-content"><h3 class="text-lg font-medium">Avocado Toast</h3><span class="text-lg opacity-80">₹580</span></div></div>
+                <div class="menu-card"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=500&auto=format&fit=crop" class="card-img"><div class="card-content"><h3 class="text-lg font-medium">Pour Over</h3><span class="text-lg opacity-80">₹380</span></div></div>
+                <div class="menu-card"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=500&auto=format&fit=crop" class="card-img"><div class="card-content"><h3 class="text-lg font-medium">Cappuccino</h3><span class="text-lg opacity-80">₹340</span></div></div>
             </div>
+        </div>
+    </div>
+
+    <!-- Gallery/Story Overlay -->
+    <div id="gallery" class="overlay-view">
+        <div class="max-w-4xl mx-auto">
+            <button onclick="closeSection()" class="mb-8 text-sm opacity-60 hover:opacity-100 flex items-center gap-2">
+                ← BACK TO HOME
+            </button>
+            
+            <section class="mb-20">
+                <h2 class="text-5xl font-serif mb-12">Visual Journey</h2>
+                <div class="gallery-grid">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600" class="aspect-square object-cover rounded-lg" alt="Cafe vibe">
+                    <img src="https://images.unsplash.com/photo-1507133750040-4a8f57021571?q=80&w=600" class="aspect-square object-cover rounded-lg" alt="Espresso machine">
+                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=600" class="aspect-square object-cover rounded-lg" alt="Beans">
+                    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=600" class="aspect-square object-cover rounded-lg" alt="Coffee pouring">
+                    <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?q=80&w=600" class="aspect-square object-cover rounded-lg" alt="Cafe window">
+                    <img src="https://images.unsplash.com/photo-1525648199074-cee30ba79a4a?q=80&w=600" class="aspect-square object-cover rounded-lg" alt="Barista">
+                </div>
+            </section>
+
+            <section class="mb-20">
+                <h2 class="text-5xl font-serif mb-12">How it began</h2>
+                <div class="prose prose-invert max-w-none">
+                    <div class="timeline-item">
+                        <h4 class="text-xl font-bold mb-1">2018: The Seed</h4>
+                        <p class="opacity-70">Inspired by the quiet coffee culture of Kyoto, Naomi started roasting small batches in a backyard in Brooklyn, seeking the perfect balance of acidity and soul.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4 class="text-xl font-bold mb-1">2020: The Brick and Mortar</h4>
+                        <p class="opacity-70">Amidst a changing world, we opened our first doors. We wanted to create a sanctuary—a place where time slows down just enough for you to taste the notes of jasmine and chocolate.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4 class="text-xl font-bold mb-1">2023: Community Growth</h4>
+                        <p class="opacity-70">Naomi Cafe evolved into more than a coffee shop. It became a hub for local artists, a workspace for dreamers, and a home for anyone who appreciates the craft of a manual brew.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4 class="text-xl font-bold mb-1">Today: The Journey Continues</h4>
+                        <p class="opacity-70">Every cup we serve is a chapter of our story. We continue to source ethically, roast meticulously, and serve with heart.</p>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 
